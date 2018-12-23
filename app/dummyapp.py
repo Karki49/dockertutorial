@@ -1,15 +1,12 @@
-from flask import Flask
-app = Flask(__name__)
+import logging
+import os
+import time
 
+def do_logging():
+	someID = os.environ.get('randomName', "oops")
+	for i in range(10):
+		logging.error("hello from %s . iter: %s" %(someID, i))
+		time.sleep(5)
 
-@app.route('/')
-def hello():
-    return "hello says hi"
-
-@app.route('/docker')
-def dock():
-    return "Docker is bae!"
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8888)
+if __name__=='__main__':
+	do_logging()
